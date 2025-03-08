@@ -25,3 +25,17 @@ server.on("error", (err: Error) => {
 });
 server.on("connection", newConn);
 server.listen({ host: "127.0.0.1", port: 1234 });
+
+function soRead(conn: TCPConn): Promise<Buffer>;
+function soWrite(conn: TCPConn, data: Buffer): Promise<void>;
+
+// A Promise-Based API for TCP sockets.
+type TCPConn = {
+  // the JS Socket Object
+  socket: net.Socket;
+  // the callbacks of a promise of the current read
+  reader: null | {
+    resolve: (value: Buffer) => void;
+    reject: (reason: Error) => void;
+  };
+};
