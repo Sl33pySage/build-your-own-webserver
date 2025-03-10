@@ -1,22 +1,29 @@
 import * as net from "net";
 
-function newConn(socket: net.Socket): void {
+async function newConn(socket: net.Socket): Promise<void> {
   console.log("New Connection", socket.remoteAddress, socket.remotePort);
 
-  socket.on("end", () => {
-    //FIN recieved. The connection will be closed automatically.
-    console.log("EOF.");
-  });
-  socket.on("data", (data: Buffer) => {
-    console.log("Data: ", data);
-    socket.write(data); // Echo back the data.
+  try {
+    await serveClient(socket);
+  } catch (exc) {
+    console.error("exception", exc);
+  } finally {
+    socket.destroy();
+  }
+}
 
-    // Actively closes the connection if the data contains 'q'
-    if (data.includes("q")) {
-      console.log("Closing connection...");
-      socket.end(); // This will send FIN and close the connection.
+// echo server
+async function serveClient(socket: net.Socket): Promise<void> {
+  const conn: TCPConn = soInit(socket);
+  while (true) {
+    const data = await soRead(conn);
+    if (data.length === 0) {
+      console.log("End Connection");
+      break;
     }
-  });
+    console.log("data", data);
+    await soWrite(conn, data);
+  }
 }
 
 const server = net.createServer({
