@@ -26,6 +26,19 @@ async function serveClient(socket: net.Socket): Promise<void> {
   }
 }
 
+type TCPListener = {
+  socket: net.Socket;
+  // ...
+
+
+};
+
+function soListen(...): TCPListener;
+function soAccept(listener: TCPListener): Promise<TCPConn>;
+
+
+
+
 const server = net.createServer({
   pauseOnConnect: true, // Required by 'TCPConn'
 });
