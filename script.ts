@@ -42,7 +42,11 @@ while (need_more_data()) {
   buf = Buffer.concat([buffer, data()])
 }
 buf = Buffer.concat([buf, data])
-
+// A dynamic sized buffer
+type DynBuff = {
+  data: Buffer,
+  length: number,
+};
 
 const server = net.createServer({
   pauseOnConnect: true, // Required by 'TCPConn'
