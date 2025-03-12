@@ -37,6 +37,11 @@ function soListen(...): TCPListener;
 function soAccept(listener: TCPListener): Promise<TCPConn>;
 
 
+// PSEUDO CODE AND BUFFER EXAMPLES! BAD!
+while (need_more_data()) {
+  buf = Buffer.concat([buffer, data()])
+}
+buf = Buffer.concat([buf, data])
 
 
 const server = net.createServer({
