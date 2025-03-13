@@ -48,6 +48,12 @@ type DynBuff = {
   length: number,
 };
 
+// append data to Dynbuf
+function bufPush(buf: Dynbuf, data: Buffer): void {
+  const newLen = buf.length + data.length
+}
+
+
 const server = net.createServer({
   pauseOnConnect: true, // Required by 'TCPConn'
 });
