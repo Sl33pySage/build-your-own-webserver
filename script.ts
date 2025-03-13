@@ -50,7 +50,13 @@ type DynBuff = {
 
 // append data to Dynbuf
 function bufPush(buf: Dynbuf, data: Buffer): void {
-  const newLen = buf.length + data.length
+  const newLen = buf.length + data.length;
+  if (buf.data.length < newLen) {
+    //grow the capacity
+
+  }
+  data.copy(buf.data, buf.length, 0);
+  buf.length = newLen;
 }
 
 
