@@ -52,8 +52,13 @@ type DynBuff = {
 function bufPush(buf: Dynbuf, data: Buffer): void {
   const newLen = buf.length + data.length;
   if (buf.data.length < newLen) {
-    //grow the capacity
-
+    //grow the capacity by the power of two
+    let cap = Math.max(buf.data.length, 32);
+    while (cap < newLen) {
+      cap *= 2;
+    }
+    const grown = Buffer.alloc(cap);
+    buf.data.copy(grown, 0, 0);
   }
   data.copy(buf.data, buf.length, 0);
   buf.length = newLen;
