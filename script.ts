@@ -65,6 +65,11 @@ function bufPush(buf: Dynbuf, data: Buffer): void {
 }
 
 
+// 5.3 Implemeting a Message Protocol
+// Step 1: The Server Loop
+
+
+
 const server = net.createServer({
   pauseOnConnect: true, // Required by 'TCPConn'
 });
