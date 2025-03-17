@@ -38,18 +38,18 @@ function soAccept(listener: TCPListener): Promise<TCPConn>;
 
 
 // PSEUDO CODE AND BUFFER EXAMPLES! BAD!
-while (need_more_data()) {
-  buf = Buffer.concat([buffer, data()])
-}
-buf = Buffer.concat([buf, data])
+// while (need_more_data()) {
+//   buf = Buffer.concat([buffer, data()])
+// }
+// buf = Buffer.concat([buf, data])
 // A dynamic sized buffer
-type DynBuff = {
+type DynBuf = {
   data: Buffer,
   length: number,
 };
 
 // append data to Dynbuf
-function bufPush(buf: Dynbuf, data: Buffer): void {
+function bufPush(buf: DynBuf, data: Buffer): void {
   const newLen = buf.length + data.length;
   if (buf.data.length < newLen) {
     //grow the capacity by the power of two
