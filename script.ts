@@ -67,7 +67,9 @@ function bufPush(buf: DynBuf, data: Buffer): void {
 
 // 5.3 Implemeting a Message Protocol
 // Step 1: The Server Loop
-
+async function serveClient(socket: net.Socket): Promise<void> {
+  
+}
 
 
 const server = net.createServer({
