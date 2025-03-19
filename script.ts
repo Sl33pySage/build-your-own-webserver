@@ -76,6 +76,18 @@ async function serveClient(socket: net.Socket): Promise<void> {
   const buf: DynBuf = { data: Buffer.alloc(0), length: 0 };
   while (true) {
     // try to get 1 message from the buffer
+    const msg: null | Buffer = cutMessage(buf);
+    if (!msg) {
+      // need more data
+      const data: Buffer = await soRead(conn);
+      bufPush(buf, data);
+      // EOF?
+      if (data.length === 0) {
+        // omitted ...
+        return;
+      }
+      // got some data, try it again
+    }
   }
 }
 
