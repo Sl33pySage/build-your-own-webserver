@@ -72,7 +72,11 @@ function bufPush(buf: DynBuf, data: Buffer): void {
 // TODO 2: Handle the message.
 // TODO 3: Send the response.
 async function serveClient(socket: net.Socket): Promise<void> {
-
+  const conn: TCPConn = soInit(socket);
+  const buf: DynBuf = { data: Buffer.alloc(0), length: 0 };
+  while (true) {
+    // try to get 1 message from the buffer
+  }
 }
 
 
