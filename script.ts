@@ -87,8 +87,10 @@ async function serveClient(socket: net.Socket): Promise<void> {
         return;
       }
       // got some data, try it again
+      continue;
     }
-  }
+    // omitted. Process the message and send the response ...
+  } // loop for messages
 }
 
 
