@@ -67,8 +67,12 @@ function bufPush(buf: DynBuf, data: Buffer): void {
 
 // 5.3 Implemeting a Message Protocol
 // Step 1: The Server Loop
+// At a high level, the server should be a loop
+// TODO 1: Parse and remove a complete message from the incoming byte stream. Append some data to the buffer. Continue the loop if the message is incomplete.
+// TODO 2: Handle the message.
+// TODO 3: Send the response.
 async function serveClient(socket: net.Socket): Promise<void> {
-  
+
 }
 
 
