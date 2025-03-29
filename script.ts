@@ -94,6 +94,12 @@ async function serveClient(socket: net.Socket): Promise<void> {
 }
 
 
+function cutMessage(buf: DynBuf): null | Buffer {
+  // messages are seperated by "\n"
+  
+}
+
+
 const server = net.createServer({
   pauseOnConnect: true, // Required by 'TCPConn'
 });
